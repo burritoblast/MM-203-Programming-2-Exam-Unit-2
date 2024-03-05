@@ -8,13 +8,14 @@ class Response:
     def __repr__(self): 
         return f"Response ({self.statusCode})\n{self.url} \n{self.content}"
 
-    
 class HttpUtils:
+    @staticmethod
     def Get(url):
-        respons = requests.get(url)
-        return Response(content=respons.text,statusCode=respons.status_code, url=url)
-    
+        response = requests.get(url)
+        return Response(content=response.text, statusCode=response.status_code, url=url)
+
+    @staticmethod
     def Post(url, data):
-        answer = {answer:data}
-        respons = requests.post(url,json=answer)
-        return Response(content=respons.json(),statusCode=respons.status_code, url=url)
+        answer = {"answer": data}
+        response = requests.post(url, json=answer)
+        return Response(content=response.json(), statusCode=response.status_code, url=url)
